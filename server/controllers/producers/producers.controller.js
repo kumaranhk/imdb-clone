@@ -31,6 +31,15 @@ export const producerController = {
   createProducer: async (req, res) => {
     const { name, dob, gender, bio } = req.body;
     const { user } = req;
+    const year = new Date(body?.dob).getFullYear();
+    const currentYear = new Date().getFullYear();
+
+    if (!body.name || !body.dob || !body.gender) {
+      return res.status(400).json({ msg: "All fields are required" });
+    }
+    if (year > currentYear) {
+      return res.status(400).json({ msg: "Year of birth is invalid" });
+    }
     try {
       const producer = await producerModel.create({
         name,
@@ -56,6 +65,12 @@ export const producerController = {
         .status(400)
         .json({ msg: "Id is required for updating the producer" });
 
+    const year = new Date(body?.dob).getFullYear();
+    const currentYear = new Date().getFullYear();
+
+    if (year > currentYear) {
+      return res.status(400).json({ msg: "Year of birth is invalid" });
+    }
     try {
       const producer = await producerModel.findOne({
         _id: id,

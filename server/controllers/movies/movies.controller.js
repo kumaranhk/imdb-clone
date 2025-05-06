@@ -38,7 +38,6 @@ export const movieController = {
     try {
       const { name, yearOfRelease, plot, actors, producer, poster } = req.body;
       const { user } = req;
-      console.log({ name, yearOfRelease, plot, actors, producer, poster });
 
       if (
         !name ||
