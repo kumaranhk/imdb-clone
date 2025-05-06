@@ -87,7 +87,7 @@ const LoginForm = ({ type }) => {
             } catch (error) {
                 console.error("API Error:", error);
                 setLoading(false);
-                toast.error(req.data?.msg || 'Something went wrong');
+                toast.error(error?.data?.msg || 'Something went wrong');
             }
         }
     };

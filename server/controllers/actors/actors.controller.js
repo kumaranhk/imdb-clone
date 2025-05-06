@@ -4,6 +4,9 @@ export const actorController = {
   getActors: async (req, res) => {
     try {
       const actors = await actorModel.find({ deletedAt: null });
+      // const req = await fetch('http://www.omdbapi.com/?i=tt3896198&apikey=19109432');
+      // const data = await req.json();
+      // console.log(data);
       res.json(actors);
     } catch (error) {
       console.log(error);

@@ -36,15 +36,17 @@ export const movieController = {
 
   createMovie: async (req, res) => {
     try {
-      const { name, yearOfRelease, plot, actors, producer } = req.body;
+      const { name, yearOfRelease, plot, actors, producer, poster } = req.body;
       const { user } = req;
+      console.log({ name, yearOfRelease, plot, actors, producer, poster });
 
       if (
         !name ||
         !yearOfRelease ||
         !plot ||
         !Array.isArray(actors) ||
-        !producer
+        !producer ||
+        !poster
       ) {
         return res.status(400).json({ msg: "All fields are required" });
       }
@@ -74,6 +76,7 @@ export const movieController = {
         plot,
         actors,
         producer,
+        poster,
         createdBy: user._id,
         UpdatedBy: user._id,
       });
@@ -144,7 +147,6 @@ export const movieController = {
     try {
       const movie = await movieModel.findOne({ _id: id, deletedAt: null });
       if (!movie) return res.status(404).json({ msg: "Movie not found" });
-
       await movieModel.updateOne(
         { _id: id },
         { $set: { deletedAt: new Date().toISOString(), deletedBy: user._id } }

@@ -10,7 +10,7 @@ const verifyJWT = (token) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     return decoded.user ;
   } catch (error) {
-    console.log(error);
+    console.log('From auth middleware',error);
     return null;
   }
 }

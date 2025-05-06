@@ -1,5 +1,5 @@
 import axios from 'axios';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const instance = axios.create({
     baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
@@ -26,7 +26,7 @@ instance.interceptors.response.use(
         if (error.response && error.response.status === 401) {
             console.log("Unauthenticated, logging out ...");
             localStorage.clear();
-            // window.location.href = "/login";
+            window.location.href = "/login";
         }
         return Promise.reject(error);
     }
