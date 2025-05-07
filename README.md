@@ -12,4 +12,5 @@ A simple Node.js + Express + React for an IMDb Clone project, with authenticatio
 - Utlized redux for token and user storage
 - Designed schema based on Relational mapping
  
+
 ---
